@@ -1,15 +1,11 @@
 package com.npkompleet.dps.application.parts;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -26,8 +22,6 @@ public class ChartPart {
 	private Text text;
     private Chart chart;
     
-    @Inject
-    MWindow window;
 
     @PostConstruct
     public void createControls(Composite parent) {
@@ -44,7 +38,7 @@ public class ChartPart {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 text.setText("button clicked");
-                FileDialog dialog = new FileDialog(new Shell(), SWT.OPEN);
+                FileDialog dialog = new FileDialog(new Shell(SWT.CENTER), SWT.OPEN);
                 dialog.open();
                 
             }
