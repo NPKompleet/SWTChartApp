@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="com.npkompleet.dps.application" id="com.npkompleet.dps.application.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="com.npkompleet.dps.application" uid="chart" id="com.npkompleet.dps.application.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -16,8 +16,8 @@
    <windowImages/>
 
    <plugins>
-      <plugin id="com.npkompleet.dps.application"/>
       <plugin id="com.ibm.icu"/>
+      <plugin id="com.npkompleet.dps.application"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="org.apache.batik.constants"/>
