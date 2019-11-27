@@ -18,6 +18,8 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swtchart.Chart;
+import org.eclipse.swtchart.IAxis;
+import org.eclipse.swtchart.IBarSeries;
 import org.eclipse.swtchart.ILineSeries;
 import org.eclipse.swtchart.ISeries.SeriesType;
 
@@ -78,6 +80,17 @@ public class ChartPart {
                 	lineSeries.setXSeries(xSeries);
                     lineSeries.setYSeries(chartData.getyValues());
                 }
+                
+                else if (chartData.getType().equals("bar")) {
+                	// create bar series
+                	IBarSeries barSeries = (IBarSeries) chart.getSeriesSet()
+                	    .createSeries(SeriesType.BAR, "bar series");
+                	barSeries.setYSeries(chartData.getyValues());
+                	IAxis xAxis = chart.getAxisSet().getXAxis(0);
+                	xAxis.setCategorySeries(chartData.getxValues());
+                	xAxis.enableCategory(true);
+                }
+                
                 chart.redraw();
                 chart.getAxisSet().adjustRange();
                 
