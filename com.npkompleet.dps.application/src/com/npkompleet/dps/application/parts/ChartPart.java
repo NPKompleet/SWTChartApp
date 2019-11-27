@@ -4,7 +4,6 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.di.Focus;
-import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -37,13 +36,15 @@ public class ChartPart {
         button.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                text.setText("button clicked");
+            	// Open a file dialog that reads only JSON files
                 FileDialog dialog = new FileDialog(new Shell(SWT.CENTER), SWT.OPEN);
+                dialog.setFilterExtensions(new String[] {".json"});
                 dialog.open();
+                
+                text.setText(dialog.getFilterPath().concat("\\").concat(dialog.getFileName()));
                 
             }
         });
-
         
         chart = new Chart(parent, SWT.NONE);
         chart.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
