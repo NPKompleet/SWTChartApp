@@ -2,6 +2,12 @@ package com.npkompleet.dps.application.util;
 
 import org.eclipse.e4.core.di.annotations.Creatable;
 
+/**
+ * A class that holds the important information needed to construct 
+ * an SWTChart line or bar chart
+ * @author Phenomenon
+ *
+ */
 @Creatable
 public class ChartData {
 	private String title;

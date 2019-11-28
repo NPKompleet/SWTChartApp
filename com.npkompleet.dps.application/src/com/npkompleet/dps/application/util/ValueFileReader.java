@@ -21,6 +21,12 @@ public class ValueFileReader {
 		
 	}
 	
+	/**
+	 * Reads from a file and constructs a {@link com.npkompleet.dps.application.util.ChartData}
+	 * from it.
+	 * @param filePath the location of the file to be read from.
+	 * @return an instance of a {@link com.npkompleet.dps.application.util.ChartData} class.
+	 */
 	public ChartData parseFile(String filePath) {
 		try {
 			FileInputStream reader = new FileInputStream(filePath);
