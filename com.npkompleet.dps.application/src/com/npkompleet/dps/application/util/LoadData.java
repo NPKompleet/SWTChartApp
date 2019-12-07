@@ -19,7 +19,9 @@ import org.eclipse.app4mc.amalthea.model.Task;
 import org.eclipse.app4mc.amalthea.model.Time;
 import org.eclipse.app4mc.amalthea.model.io.AmaltheaLoader;
 import org.eclipse.app4mc.amalthea.model.util.SoftwareUtil;
+import org.eclipse.e4.core.di.annotations.Creatable;
 
+@Creatable
 public class LoadData {
 
 	public LoadData() {
@@ -27,10 +29,10 @@ public class LoadData {
 	}
 
 	
-	public static Map<String, BigInteger> generateChartData() {
+	public Map<String, BigInteger> generateChartData() {
 		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
 		
-		final File inputFile = new File("model-input/democar.amxmi");
+		final File inputFile = new File("C:/Users/Phenomenon/Documents/rcp/app4mc.example.tool.java/model-input/democar.amxmi");
 
 		Amalthea model = AmaltheaLoader.loadFromFile(inputFile);
 
