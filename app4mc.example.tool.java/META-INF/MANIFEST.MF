@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: APP4MC Amalthea Java Example
+Bundle-SymbolicName: app4mc.example.tool.java
+Bundle-Version: 0.9.6.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: Eclipse APP4MC
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.app4mc.amalthea.model
+Automatic-Module-Name: app4mc.example.tool.java
+Export-Package: app4mc.example.tool.java
