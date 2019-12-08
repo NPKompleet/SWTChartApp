@@ -21,7 +21,9 @@ import org.eclipse.swtchart.Chart;
 import org.eclipse.swtchart.IAxis;
 import org.eclipse.swtchart.IBarSeries;
 import org.eclipse.swtchart.ILineSeries;
+import org.eclipse.swtchart.ISeries;
 import org.eclipse.swtchart.ISeries.SeriesType;
+import org.eclipse.swtchart.ISeriesSet;
 
 import com.npkompleet.dps.application.util.ChartData;
 import com.npkompleet.dps.application.util.ValueFileReader;
@@ -58,6 +60,17 @@ public class ChartPart {
                 text.setText(filePath);
                 
                 chartData = fileReader.parseFile(filePath);
+                
+                // clear current series
+                if (chart != null && chart.getSeriesSet() != null) {
+                	ISeriesSet seriesSet = chart.getSeriesSet();
+                	ISeries[] series = chart.getSeriesSet().getSeries();
+                	if (series.length > 0) {
+                		for (ISeries s : series) {
+                			seriesSet.deleteSeries(s.getId());
+                		}
+                	}
+                }
                 
                 // set titles
                 chart.getTitle().setText(chartData.getTitle());
