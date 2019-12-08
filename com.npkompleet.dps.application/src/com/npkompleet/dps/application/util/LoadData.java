@@ -29,10 +29,35 @@ public class LoadData {
 	}
 
 	
-	public Map<String, BigInteger> generateChartData() {
+	public Map<String, BigInteger> generateLabelSizeData(String path) {
 		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
 		
-		final File inputFile = new File("C:/Users/Phenomenon/Documents/rcp/app4mc.example.tool.java/model-input/democar.amxmi");
+		final File inputFile = new File(path);
+
+		Amalthea model = AmaltheaLoader.loadFromFile(inputFile);
+
+		if (model == null) {
+			System.out.println("Error: No model loaded!");
+			return null;
+		}
+
+		List<Task> taskList = model.getSwModel().getTasks();
+		for (Task task : taskList) {
+			Set<Label> lLabels = SoftwareUtil.getAccessedLabelSet(task, null);
+			
+			BigInteger labelSize = lLabels.stream().map(x -> x.getSize().getValue())
+				.reduce(BigInteger.ZERO, (BigInteger a, BigInteger b) -> a.add(b) );
+			taskListMap.put(task.getName(), labelSize);
+			System.out.println(labelSize);
+			System.out.println(task.getName());
+		}
+		return taskListMap;
+	}
+
+	public Map<String, BigInteger> generateActivationTimeData(String path) {
+		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
+		
+		final File inputFile = new File(path);
 
 		Amalthea model = AmaltheaLoader.loadFromFile(inputFile);
 
@@ -47,14 +72,8 @@ public class LoadData {
 			if (stimuli instanceof PeriodicStimulus) {
 				Time period = ((PeriodicStimulus) stimuli).getRecurrence();
 				System.out.println("Period " + period);
+				taskListMap.put(task.getName(), period.getValue());
 			}
-			Set<Label> lLabels = SoftwareUtil.getAccessedLabelSet(task, null);
-			
-			BigInteger labelSize = lLabels.stream().map(x -> x.getSize().getValue())
-				.reduce(BigInteger.ZERO, (BigInteger a, BigInteger b) -> a.add(b) );
-			taskListMap.put(task.getName(), labelSize);
-			System.out.println(labelSize);
-			System.out.println(task.getName());
 		}
 		return taskListMap;
 	}

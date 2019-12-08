@@ -2,35 +2,49 @@ package com.npkompleet.dps.application.parts;
 
 import java.math.BigInteger;
 import java.util.LinkedHashMap;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swtchart.Chart;
 import org.eclipse.swtchart.IAxis;
 import org.eclipse.swtchart.IBarSeries;
 import org.eclipse.swtchart.ISeries.SeriesType;
 
-import com.npkompleet.dps.application.util.LoadData;
+import com.npkompleet.dps.application.util.ChartDataSingleton;
 
 public class LabelSizePart {
 
-	@Inject
-	LoadData loadData;
+	ChartDataSingleton chartData = ChartDataSingleton.getInstance();
+	private Composite parent;
+	private Chart chart;
+	
 
 	@PostConstruct
 	public void createControls(Composite parent) {
+		this.parent = parent;
 		parent.setLayout(new GridLayout(2, false));
 
-		Chart chart = new Chart(parent, SWT.NONE);
+		createChart();
+
+	}
+
+	@Focus
+	public void onFocus() {
+	}
+	
+	
+	private void createChart() {
+		chart = new Chart(parent, SWT.NONE);
+		chart.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
 		// set titles
 		chart.getTitle().setText("Label Sizes");
@@ -39,7 +53,12 @@ public class LabelSizePart {
 
 		IBarSeries barSeries = (IBarSeries) chart.getSeriesSet().createSeries(SeriesType.BAR, "bar series");
 
-		LinkedHashMap<String, BigInteger> dataMap = (LinkedHashMap<String, BigInteger>) loadData.generateChartData();
+		LinkedHashMap<String, BigInteger> dataMap = 
+				(LinkedHashMap<String, BigInteger>) chartData.getLabelSizeData();
+		if (dataMap == null) {
+			MessageDialog.openInformation(new Shell(), "No File Found", "No File loaded to generate chart");
+			return;
+		}
 		System.out.println(dataMap.size());
 		
 		String[] xValues = new String[dataMap.size()];
@@ -54,13 +73,6 @@ public class LabelSizePart {
 		xAxis.enableCategory(true);
 		
 		chart.getAxisSet().adjustRange();
-
-		chart.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-	}
-
-	@Focus
-	public void onFocus() {
-
 	}
 
 }

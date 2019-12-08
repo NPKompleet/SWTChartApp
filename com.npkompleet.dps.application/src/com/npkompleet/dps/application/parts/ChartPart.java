@@ -5,7 +5,6 @@ import java.util.stream.Stream;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.eclipse.app4mc.amalthea.model.AmaltheaFactory;
 import org.eclipse.e4.core.di.annotations.Creatable;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.swt.SWT;
@@ -98,7 +97,6 @@ public class ChartPart {
             }
         });
 
-        final AmaltheaFactory fac = AmaltheaFactory.eINSTANCE;
 
         chart = new Chart(parent, SWT.NONE);
         chart.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));

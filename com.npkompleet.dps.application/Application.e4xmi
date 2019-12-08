@@ -3,11 +3,10 @@
   <children xsi:type="basic:TrimmedWindow" xmi:id="_c3AF0cjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.window.main" label="Empty E4 Application" width="500" height="400">
     <children xsi:type="basic:PartSashContainer" xmi:id="_srpRgBApEeqlfLLz0VzoIg" elementId="com.npkompleet.dps.application.partsashcontainer.0" horizontal="true">
       <children xsi:type="basic:PartStack" xmi:id="_Ds994A_DEequQ7-6ddOUvw" elementId="com.npkompleet.dps.application.partstack.0">
-        <children xsi:type="basic:Part" xmi:id="_HnAKgA_DEequQ7-6ddOUvw" elementId="com.npkompleet.dps.application.part.hello" contributionURI="bundleclass://com.npkompleet.dps.application/com.npkompleet.dps.application.parts.Hello" label="Hello"/>
+        <children xsi:type="basic:Part" xmi:id="_HnAKgA_DEequQ7-6ddOUvw" elementId="com.npkompleet.dps.application.part.hello" contributionURI="bundleclass://com.npkompleet.dps.application/com.npkompleet.dps.application.parts.MainPart" label="Hello"/>
         <children xsi:type="basic:Part" xmi:id="_zfBz4Bi7EeqTUtBX3IRwLg" elementId="com.npkompleet.dps.application.part.labelsize" contributionURI="bundleclass://com.npkompleet.dps.application/com.npkompleet.dps.application.parts.LabelSizePart" label="Label Size"/>
         <children xsi:type="basic:Part" xmi:id="_31NJ8Bi7EeqTUtBX3IRwLg" elementId="com.npkompleet.dps.application.part.activationpattern" contributionURI="bundleclass://com.npkompleet.dps.application/com.npkompleet.dps.application.parts.ActivationPatternPart" label="Activation Pattern"/>
       </children>
-      <children xsi:type="basic:Part" xmi:id="_wFuywBApEeqlfLLz0VzoIg" elementId="com.npkompleet.dps.application.part.chartpart" contributionURI="bundleclass://com.npkompleet.dps.application/com.npkompleet.dps.application.parts.ChartPart" label="Chart"/>
     </children>
   </children>
   <rootContext xmi:id="_c3AF2cjYEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="In Dialog and Windows">
