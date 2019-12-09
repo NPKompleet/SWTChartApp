@@ -39,6 +39,7 @@ public class LabelSizePart {
 
 	@Focus
 	public void onFocus() {
+		createChart();
 	}
 	
 	
