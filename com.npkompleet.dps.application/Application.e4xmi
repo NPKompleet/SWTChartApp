@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmi:id="_c3AF0MjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.application" bindingContexts="_c3AF2cjYEeSyMNYR5xypkQ">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_c3AF0cjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.window.main" label="Empty E4 Application" width="800" height="800">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_c3AF0cjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.window.main" label="Empty E4 Application" width="600" height="600">
     <children xsi:type="basic:PartSashContainer" xmi:id="_srpRgBApEeqlfLLz0VzoIg" elementId="com.npkompleet.dps.application.partsashcontainer.0" horizontal="true">
       <children xsi:type="basic:PartStack" xmi:id="_Ds994A_DEequQ7-6ddOUvw" elementId="com.npkompleet.dps.application.partstack.0">
         <children xsi:type="basic:Part" xmi:id="_HnAKgA_DEequQ7-6ddOUvw" elementId="com.npkompleet.dps.application.part.main" contributionURI="bundleclass://com.npkompleet.dps.application/com.npkompleet.dps.application.parts.MainPart" label="Main Page"/>
