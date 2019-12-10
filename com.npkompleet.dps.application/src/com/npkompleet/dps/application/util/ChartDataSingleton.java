@@ -36,6 +36,13 @@ public class ChartDataSingleton {
 		return loadData.generateLabelSizeData(filePath);
 	}
 
+	public Map<String, BigInteger> getActivationPatternData() {
+		if (filePath == null || filePath.equals(""))
+			return null;
+		loadData = new LoadData();
+		return loadData.generateActivationTimeData(filePath);
+	}
+
 	public static long lcm_of_array_elements(int[] element_array) {
 		long lcm_of_array_elements = 1;
 		int divisor = 2;
