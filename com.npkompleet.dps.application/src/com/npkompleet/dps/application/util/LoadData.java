@@ -19,19 +19,16 @@ import org.eclipse.app4mc.amalthea.model.Task;
 import org.eclipse.app4mc.amalthea.model.Time;
 import org.eclipse.app4mc.amalthea.model.io.AmaltheaLoader;
 import org.eclipse.app4mc.amalthea.model.util.SoftwareUtil;
-import org.eclipse.e4.core.di.annotations.Creatable;
 
-@Creatable
 public class LoadData {
 
 	public LoadData() {
 
 	}
 
-	
 	public Map<String, BigInteger> generateLabelSizeData(String path) {
 		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
-		
+
 		final File inputFile = new File(path);
 
 		Amalthea model = AmaltheaLoader.loadFromFile(inputFile);
@@ -44,9 +41,9 @@ public class LoadData {
 		List<Task> taskList = model.getSwModel().getTasks();
 		for (Task task : taskList) {
 			Set<Label> lLabels = SoftwareUtil.getAccessedLabelSet(task, null);
-			
-			BigInteger labelSize = lLabels.stream().map(x -> x.getSize().getValue())
-				.reduce(BigInteger.ZERO, (BigInteger a, BigInteger b) -> a.add(b) );
+
+			BigInteger labelSize = lLabels.stream().map(x -> x.getSize().getValue()).reduce(BigInteger.ZERO,
+					(BigInteger a, BigInteger b) -> a.add(b));
 			taskListMap.put(task.getName(), labelSize);
 			System.out.println(labelSize);
 			System.out.println(task.getName());
@@ -56,7 +53,7 @@ public class LoadData {
 
 	public Map<String, BigInteger> generateActivationTimeData(String path) {
 		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
-		
+
 		final File inputFile = new File(path);
 
 		Amalthea model = AmaltheaLoader.loadFromFile(inputFile);
