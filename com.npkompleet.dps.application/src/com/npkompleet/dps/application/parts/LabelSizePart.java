@@ -24,22 +24,10 @@ import com.npkompleet.dps.application.util.ChartDataSingleton;
 public class LabelSizePart {
 
 	ChartDataSingleton chartData = ChartDataSingleton.getInstance();
-	private Composite parent;
 	private Chart chart;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
-		this.parent = parent;
-		createChart();
-
-	}
-
-	@Focus
-	public void onFocus() {
-
-	}
-
-	private void createChart() {
 		parent.setLayout(new GridLayout(2, false));
 		chart = new Chart(parent, SWT.NONE);
 		chart.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
@@ -49,6 +37,20 @@ public class LabelSizePart {
 		chart.getAxisSet().getXAxis(0).getTitle().setText("Tasks");
 		chart.getAxisSet().getYAxis(0).getTitle().setText("Size");
 
+		Display.getDefault().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				createChart();
+			}
+		});
+	}
+
+	@Focus
+	public void onFocus() {
+
+	}
+
+	private void createChart() {
 		IBarSeries barSeries = (IBarSeries) chart.getSeriesSet().createSeries(SeriesType.BAR, "bar series");
 
 		LinkedHashMap<String, BigInteger> dataMap = (LinkedHashMap<String, BigInteger>) chartData.getLabelSizeData();

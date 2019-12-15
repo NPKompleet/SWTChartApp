@@ -21,6 +21,7 @@ import org.eclipse.swtchart.ISeries.SeriesType;
 import com.npkompleet.dps.application.util.ChartDataSingleton;
 
 public class ActivationPatternPart {
+	Chart chart;
 	ChartDataSingleton chartData = ChartDataSingleton.getInstance();
 	long periodLCM;
 	Color[] colorList = new Color[] { new Color(Display.getDefault(), 255, 0, 0), // Red
@@ -33,13 +34,27 @@ public class ActivationPatternPart {
 	public void createControls(Composite parent) {
 		parent.setLayout(new GridLayout(2, false));
 
-		Chart chart = new Chart(parent, SWT.NONE);
+		chart = new Chart(parent, SWT.NONE);
 		chart.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		// set titles
 		chart.getTitle().setText("Activation Patterns");
 		chart.getAxisSet().getXAxis(0).getTitle().setText("Period");
 		chart.getAxisSet().getYAxis(0).getTitle().setText("Number");
 
+		Display.getDefault().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				createChart();
+			}
+		});
+	}
+
+	@Focus
+	public void onFocus() {
+
+	}
+
+	private void createChart() {
 		LinkedHashMap<String, BigInteger> dataMap = (LinkedHashMap<String, BigInteger>) chartData
 				.getActivationPatternData();
 		int[] holder = dataMap.values().stream().mapToInt(BigInteger::intValue).toArray();
@@ -70,11 +85,6 @@ public class ActivationPatternPart {
 
 		}
 		chart.getAxisSet().adjustRange();
-	}
-
-	@Focus
-	public void onFocus() {
-
 	}
 
 }
