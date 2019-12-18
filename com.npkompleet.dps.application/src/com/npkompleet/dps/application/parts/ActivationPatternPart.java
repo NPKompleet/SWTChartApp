@@ -110,7 +110,7 @@ public class ActivationPatternPart {
 
 			lineSeries.setXSeries(xValues.stream().mapToDouble(Double::doubleValue).toArray());
 			lineSeries.setYSeries(yValues.stream().mapToDouble(Double::doubleValue).toArray());
-			lineSeries.setLineColor(colorList[index % dataMap.size()]);
+			lineSeries.setLineColor(colorList[index % colorList.length]);
 			index++;
 
 		}
