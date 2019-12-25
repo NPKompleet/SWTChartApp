@@ -1,0 +1,34 @@
+- Introduction, including Problem Statement (What your task was)
+- Brief description on e4 application development / what is eclipse e4, what are the differences to eclipse e3
+- What is SWT charts? --> Some examples
+- Descriptin of your application, description of all views , including description of the elemenets in your views
+- Tool Demo, multiple models
+- Code Coverage, test example (can be shown during tool demo)
+https://www.eclemma.org/
+https://www.eclemma.org/images/screen.png
+
+
+From Lukas Krawczyk to Everyone:  10:19 AM
+http://git.eclipse.org/c/app4mc/org.eclipse.app4mc.examples.git/diff/WATERS-FMTV-challenges/WATERS_FMTV_Challenges__Eclipse_projects__APP4MC_v0.9.6.zip
+http://git.eclipse.org/c/app4mc/org.eclipse.app4mc.examples.git/tree/WATERS-FMTV-challenges/WATERS_FMTV_Challenges__Eclipse_projects__APP4MC_v0.9.6.zip?id=8566afba187378a64c7c5a3cb938c4274e6d456c
+http://git.eclipse.org/c/app4mc/org.eclipse.app4mc.examples.git/plain/WATERS-FMTV-challenges/WATERS_FMTV_Challenges__Eclipse_projects__APP4MC_v0.9.6.zip?id=8566afba187378a64c7c5a3cb938c4274e6d456c
+From Lukas Krawczyk to Everyone:  10:26 AM
+        List<Task> taskList = model.getSwModel().getTasks();
+        for(Task task : taskList) {
+            Stimulus stimuli = task.getStimuli().get(0);
+            if(stimuli instanceof PeriodicStimulus) {
+                Time period = ((PeriodicStimulus) stimuli).getRecurrence();
+                System.out.println("Period" + period);
+            }
+           
+            Set<Label> lLabels = SoftwareUtil.getAccessedLabelSet(task, null);
+        }
+From Lukas Krawczyk to Everyone:  10:35 AM
+- Introduction, including Problem Statement (What your task was)
+- Brief description on e4 application development / what is eclipse e4, what are the differences to eclipse e3
+- What is SWT charts? --> Some examples
+- Descriptin of your application, description of all views , including description of the elemenets in your views
+- Tool Demo, multiple models
+- Code Coverage, test example (can be shown during tool demo)
+https://www.eclemma.org/
+https://www.eclemma.org/images/screen.png
