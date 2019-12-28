@@ -60,7 +60,7 @@ public class ActivationPatternPart {
 	@Inject
 	@Optional
 	public void receiveActivePart(@Named(IServiceConstants.ACTIVE_PART) MPart activePart) {
-		if (activePart != null && activePart.getLabel().equals(Constants.ActivationPatternLabel)) {
+		if (activePart != null && activePart.getLabel().equals(Constants.ACTIVATION_PATTERN_LABEL)) {
 			System.out.println("Active part changed " + activePart.getLabel());
 			if (chart != null) {
 				ISeries[] series = chart.getSeriesSet().getSeries();
