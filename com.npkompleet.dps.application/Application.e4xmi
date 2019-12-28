@@ -6,7 +6,6 @@
         <children xsi:type="basic:Part" xmi:id="_HnAKgA_DEequQ7-6ddOUvw" elementId="com.npkompleet.dps.application.part.main" contributionURI="bundleclass://com.npkompleet.dps.application/com.npkompleet.dps.application.parts.MainPart" label="Main Page"/>
         <children xsi:type="basic:Part" xmi:id="_zfBz4Bi7EeqTUtBX3IRwLg" elementId="com.npkompleet.dps.application.part.labelsize" contributionURI="bundleclass://com.npkompleet.dps.application/com.npkompleet.dps.application.parts.LabelSizePart" label="Label Size"/>
         <children xsi:type="basic:Part" xmi:id="_31NJ8Bi7EeqTUtBX3IRwLg" elementId="com.npkompleet.dps.application.part.activationpattern" contributionURI="bundleclass://com.npkompleet.dps.application/com.npkompleet.dps.application.parts.ActivationPatternPart" label="Activation Pattern"/>
-        <children xsi:type="basic:Part" xmi:id="_DLn2MB8rEeqF9LXC6yU9eg" elementId="com.npkompleet.dps.application.part.chartpart" contributionURI="bundleclass://com.npkompleet.dps.application/com.npkompleet.dps.application.parts.ChartPart" label="Chart Part"/>
       </children>
     </children>
   </children>
