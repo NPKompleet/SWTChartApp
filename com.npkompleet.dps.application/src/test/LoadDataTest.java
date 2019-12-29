@@ -18,6 +18,7 @@ import com.npkompleet.dps.application.util.LoadData;
 public class LoadDataTest {
 
 	LoadData loadData;
+	String filePath;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -30,6 +31,7 @@ public class LoadDataTest {
 	@Before
 	public void setUp() throws Exception {
 		loadData = new LoadData();
+		filePath = System.getProperty("user.dir").concat("\\model-input\\democar.amxmi");
 	}
 
 	@After
@@ -38,7 +40,6 @@ public class LoadDataTest {
 
 	@Test
 	public void testGenerateLabelSizeData() {
-		String filePath = "E:/Git2/SWTChartApp/com.npkompleet.dps.application/model-input/democar.amxmi";
 		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
 		taskListMap.put("Task_10MS", new BigInteger(toByteArray(760)));
 		taskListMap.put("Task_20MS", new BigInteger(toByteArray(24)));
@@ -54,7 +55,6 @@ public class LoadDataTest {
 
 	@Test
 	public void testGenerateActivationTimeData() {
-		String filePath = "E:/Git2/SWTChartApp/com.npkompleet.dps.application/model-input/democar.amxmi";
 		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
 		taskListMap.put("Task_10MS", new BigInteger(toByteArray(10)));
 		taskListMap.put("Task_20MS", new BigInteger(toByteArray(20)));

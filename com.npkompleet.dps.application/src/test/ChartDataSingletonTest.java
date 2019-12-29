@@ -18,6 +18,7 @@ import com.npkompleet.dps.application.util.ChartDataSingleton;
 public class ChartDataSingletonTest {
 
 	ChartDataSingleton chartData;
+	String filePath;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -30,6 +31,7 @@ public class ChartDataSingletonTest {
 	@Before
 	public void setUp() throws Exception {
 		chartData = ChartDataSingleton.getInstance();
+		filePath = System.getProperty("user.dir").concat("\\model-input\\democar.amxmi");
 	}
 
 	@After
@@ -38,7 +40,6 @@ public class ChartDataSingletonTest {
 
 	@Test
 	public void testGetLabelSizeData() {
-		String filePath = "E:/Git2/SWTChartApp/com.npkompleet.dps.application/model-input/democar.amxmi";
 		chartData.setFilePath(filePath);
 		// Cover the getter method
 		chartData.getFilePath();
@@ -58,7 +59,6 @@ public class ChartDataSingletonTest {
 
 	@Test
 	public void testGetActivationPatternData() {
-		String filePath = "E:/Git2/SWTChartApp/com.npkompleet.dps.application/model-input/democar.amxmi";
 		chartData.setFilePath(filePath);
 		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
 		taskListMap.put("Task_10MS", new BigInteger(toByteArray(10)));
@@ -80,7 +80,6 @@ public class ChartDataSingletonTest {
 
 	@Test
 	public void testLcmOfArrayElements() {
-		String filePath = "E:/Git2/SWTChartApp/com.npkompleet.dps.application/model-input/democar.amxmi";
 		chartData.setFilePath(filePath);
 		LinkedHashMap<String, BigInteger> dataMap = (LinkedHashMap<String, BigInteger>) chartData
 				.getActivationPatternData();
