@@ -54,7 +54,7 @@ public class LabelSizePart {
 	@Inject
 	@Optional
 	public void receiveActivePart(@Named(IServiceConstants.ACTIVE_PART) MPart activePart) {
-		if (activePart != null && activePart.getLabel().equals(Constants.SizeLabel)) {
+		if (activePart != null && activePart.getLabel().equals(Constants.SIZE_LABEL)) {
 			System.out.println("Active part changed " + activePart.getLabel());
 			if (chart != null) {
 				ISeries[] series = chart.getSeriesSet().getSeries();

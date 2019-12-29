@@ -1,8 +1,8 @@
 package com.npkompleet.dps.application.util;
 
 public class Constants {
-	public static final String MainLabel = "Main Page";
-	public static final String SizeLabel = "Label Size";
-	public static final String ActivationPatternLabel = "Activation Pattern";
-	public static final String ChartLabel = "Chart Part";
+	public static final String MAIN_LABEL = "Main Page";
+	public static final String SIZE_LABEL = "Label Size";
+	public static final String ACTIVATION_PATTERN_LABEL = "Activation Pattern";
+	public static final String CHART_LABEL = "Chart Part";
 }
