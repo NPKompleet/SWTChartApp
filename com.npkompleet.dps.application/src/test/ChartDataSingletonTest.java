@@ -84,7 +84,7 @@ public class ChartDataSingletonTest {
 		LinkedHashMap<String, BigInteger> dataMap = (LinkedHashMap<String, BigInteger>) chartData
 				.getActivationPatternData();
 		int[] holder = dataMap.values().stream().mapToInt(BigInteger::intValue).toArray();
-		assertEquals(20, ChartDataSingleton.lcm_of_array_elements(holder));
+		assertEquals(20, ChartDataSingleton.lcm_of_periods(holder));
 	}
 
 }

@@ -88,7 +88,7 @@ public class ActivationPatternPart {
 			return;
 		}
 		int[] holder = dataMap.values().stream().mapToInt(BigInteger::intValue).toArray();
-		periodLCM = ChartDataSingleton.lcm_of_array_elements(holder);
+		periodLCM = ChartDataSingleton.lcm_of_periods(holder);
 		int index = 0;
 		for (String task : dataMap.keySet()) {
 			ILineSeries lineSeries = (ILineSeries) chart.getSeriesSet().createSeries(SeriesType.LINE, task);

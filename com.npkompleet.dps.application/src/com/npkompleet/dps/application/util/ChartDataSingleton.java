@@ -39,53 +39,62 @@ public class ChartDataSingleton {
 		return LoadData.generateActivationTimeData(filePath);
 	}
 
-	public static long lcm_of_array_elements(int[] element_array) {
-		long lcm_of_array_elements = 1;
+	/**
+	 * This code was adapted from the GeeksForGeeks website.
+	 * 
+	 * @param task_period_array
+	 * @return lowest common multiple (LCM) of the integers in the
+	 *         task_period_array.
+	 * @see <a href=
+	 *      "https://www.geeksforgeeks.org/lcm-of-given-array-elements/">GeekForGeeks</a>
+	 */
+	public static long lcm_of_periods(int[] task_period_array) {
+		long lcm_of_items = 1;
 		int divisor = 2;
 
 		while (true) {
 			int counter = 0;
 			boolean divisible = false;
 
-			for (int i = 0; i < element_array.length; i++) {
+			for (int i = 0; i < task_period_array.length; i++) {
 
-				// lcm_of_array_elements (n1, n2, ... 0) = 0.
+				// lcm_of_items (n1, n2, ... 0) = 0.
 				// For negative number we convert into
-				// positive and calculate lcm_of_array_elements.
+				// positive and calculate lcm_of_items.
 
-				if (element_array[i] == 0) {
+				if (task_period_array[i] == 0) {
 					return 0;
-				} else if (element_array[i] < 0) {
-					element_array[i] = element_array[i] * (-1);
+				} else if (task_period_array[i] < 0) {
+					task_period_array[i] = task_period_array[i] * (-1);
 				}
-				if (element_array[i] == 1) {
+				if (task_period_array[i] == 1) {
 					counter++;
 				}
 
-				// Divide element_array by divisor if complete
+				// Divide task_period_array by divisor if complete
 				// division i.e. without remainder then replace
 				// number with quotient; used for find next factor
-				if (element_array[i] % divisor == 0) {
+				if (task_period_array[i] % divisor == 0) {
 					divisible = true;
-					element_array[i] = element_array[i] / divisor;
+					task_period_array[i] = task_period_array[i] / divisor;
 				}
 			}
 
 			// If divisor able to completely divide any number
-			// from array multiply with lcm_of_array_elements
-			// and store into lcm_of_array_elements and continue
+			// from array multiply with lcm_of_items
+			// and store into lcm_of_items and continue
 			// to same divisor for next factor finding.
 			// else increment divisor
 			if (divisible) {
-				lcm_of_array_elements = lcm_of_array_elements * divisor;
+				lcm_of_items = lcm_of_items * divisor;
 			} else {
 				divisor++;
 			}
 
-			// Check if all element_array is 1 indicate
+			// Check if all task_period_array is 1 indicate
 			// we found all factors and terminate while loop.
-			if (counter == element_array.length) {
-				return lcm_of_array_elements;
+			if (counter == task_period_array.length) {
+				return lcm_of_items;
 			}
 		}
 	}
