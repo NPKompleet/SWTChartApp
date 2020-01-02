@@ -6,8 +6,6 @@ import java.util.Map;
 public class ChartDataSingleton {
 	private static ChartDataSingleton instance;
 
-	private LoadData loadData;
-
 	private String filePath;
 
 	private ChartDataSingleton() {
@@ -32,15 +30,13 @@ public class ChartDataSingleton {
 	public Map<String, BigInteger> getLabelSizeData() {
 		if (filePath == null || filePath.equals(""))
 			return null;
-		loadData = new LoadData();
-		return loadData.generateLabelSizeData(filePath);
+		return LoadData.generateLabelSizeData(filePath);
 	}
 
 	public Map<String, BigInteger> getActivationPatternData() {
 		if (filePath == null || filePath.equals(""))
 			return null;
-		loadData = new LoadData();
-		return loadData.generateActivationTimeData(filePath);
+		return LoadData.generateActivationTimeData(filePath);
 	}
 
 	public static long lcm_of_array_elements(int[] element_array) {

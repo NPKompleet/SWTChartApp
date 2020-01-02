@@ -26,7 +26,7 @@ public class LoadData {
 
 	}
 
-	public Map<String, BigInteger> generateLabelSizeData(String path) {
+	public static Map<String, BigInteger> generateLabelSizeData(String path) {
 		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
 
 		final File inputFile = new File(path);
@@ -51,7 +51,7 @@ public class LoadData {
 		return taskListMap;
 	}
 
-	public Map<String, BigInteger> generateActivationTimeData(String path) {
+	public static Map<String, BigInteger> generateActivationTimeData(String path) {
 		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
 
 		final File inputFile = new File(path);

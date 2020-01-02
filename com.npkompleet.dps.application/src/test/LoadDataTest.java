@@ -17,7 +17,6 @@ import com.npkompleet.dps.application.util.LoadData;
 
 public class LoadDataTest {
 
-	LoadData loadData;
 	String filePath;
 
 	@BeforeClass
@@ -30,7 +29,6 @@ public class LoadDataTest {
 
 	@Before
 	public void setUp() throws Exception {
-		loadData = new LoadData();
 		filePath = System.getProperty("user.dir").concat("\\model-input\\democar.amxmi");
 	}
 
@@ -44,13 +42,13 @@ public class LoadDataTest {
 		taskListMap.put("Task_10MS", new BigInteger(toByteArray(760)));
 		taskListMap.put("Task_20MS", new BigInteger(toByteArray(24)));
 		taskListMap.put("Task_5MS", new BigInteger(toByteArray(256)));
-		assertEquals(taskListMap, loadData.generateLabelSizeData(filePath));
+		assertEquals(taskListMap, LoadData.generateLabelSizeData(filePath));
 	}
 
 	@Test
 	public void testGenerateLabelSizeDataWithNoPath() {
 		String filePath = "";
-		assertEquals(null, loadData.generateLabelSizeData(filePath));
+		assertEquals(null, LoadData.generateLabelSizeData(filePath));
 	}
 
 	@Test
@@ -59,13 +57,13 @@ public class LoadDataTest {
 		taskListMap.put("Task_10MS", new BigInteger(toByteArray(10)));
 		taskListMap.put("Task_20MS", new BigInteger(toByteArray(20)));
 		taskListMap.put("Task_5MS", new BigInteger(toByteArray(5)));
-		assertEquals(taskListMap, loadData.generateActivationTimeData(filePath));
+		assertEquals(taskListMap, LoadData.generateActivationTimeData(filePath));
 	}
 
 	@Test
 	public void testGenerateActivationTimeDataWithNoPath() {
 		String filePath = "";
-		assertEquals(null, loadData.generateActivationTimeData(filePath));
+		assertEquals(null, LoadData.generateActivationTimeData(filePath));
 	}
 
 	byte[] toByteArray(int value) {
