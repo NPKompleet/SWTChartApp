@@ -38,7 +38,11 @@ public class MainPart {
 		text.addListener(SWT.Modify, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
-				ChartDataSingleton.getInstance().setFilePath(text.getText());
+				ChartDataSingleton chartData = ChartDataSingleton.getInstance();
+				chartData.setFilePath(text.getText());
+				chartData.setHasNewModelLoaded(true);
+				chartData.setHasActivationPatternDrawn(false);
+				chartData.setHasLabelSizeDrawn(false);
 			}
 		});
 
@@ -58,7 +62,6 @@ public class MainPart {
 
 			}
 		});
-
 	}
 
 	@Focus

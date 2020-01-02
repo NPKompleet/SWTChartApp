@@ -23,6 +23,7 @@ import org.eclipse.swtchart.Chart;
 import org.eclipse.swtchart.IAxis;
 import org.eclipse.swtchart.IBarSeries;
 import org.eclipse.swtchart.ISeries;
+import org.eclipse.swtchart.ISeriesSet;
 import org.eclipse.swtchart.ISeries.SeriesType;
 
 import com.npkompleet.dps.application.util.ChartDataSingleton;
@@ -57,9 +58,20 @@ public class LabelSizePart {
 		if (activePart != null && activePart.getLabel().equals(Constants.SIZE_LABEL)) {
 			System.out.println("Active part changed " + activePart.getLabel());
 			if (chart != null) {
-				ISeries[] series = chart.getSeriesSet().getSeries();
-				if (series.length == 0) {
+				ChartDataSingleton chartData = ChartDataSingleton.getInstance();
+				if (chartData.isHasNewModelLoaded()) {
+					ISeries[] series = chart.getSeriesSet().getSeries();
+					ISeriesSet seriesSet = chart.getSeriesSet();
+					if (series.length > 0) {
+						for (ISeries s : series) {
+							seriesSet.deleteSeries(s.getId());
+						}
+					}
 					drawChart();
+					chartData.setHasLabelSizeDrawn(true);
+					if (chartData.isHasActivationPatternDrawn()) {
+						chartData.setHasNewModelLoaded(false);
+					}
 				}
 			}
 		}

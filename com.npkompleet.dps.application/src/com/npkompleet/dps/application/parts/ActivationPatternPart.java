@@ -25,6 +25,7 @@ import org.eclipse.swtchart.Chart;
 import org.eclipse.swtchart.ILineSeries;
 import org.eclipse.swtchart.ISeries;
 import org.eclipse.swtchart.ISeries.SeriesType;
+import org.eclipse.swtchart.ISeriesSet;
 
 import com.npkompleet.dps.application.util.ChartDataSingleton;
 import com.npkompleet.dps.application.util.Constants;
@@ -63,9 +64,20 @@ public class ActivationPatternPart {
 		if (activePart != null && activePart.getLabel().equals(Constants.ACTIVATION_PATTERN_LABEL)) {
 			System.out.println("Active part changed " + activePart.getLabel());
 			if (chart != null) {
-				ISeries[] series = chart.getSeriesSet().getSeries();
-				if (series.length == 0) {
+				ChartDataSingleton chartData = ChartDataSingleton.getInstance();
+				if (chartData.isHasNewModelLoaded()) {
+					ISeries[] series = chart.getSeriesSet().getSeries();
+					ISeriesSet seriesSet = chart.getSeriesSet();
+					if (series.length > 0) {
+						for (ISeries s : series) {
+							seriesSet.deleteSeries(s.getId());
+						}
+					}
 					drawChart();
+					chartData.setHasActivationPatternDrawn(true);
+					if (chartData.isHasLabelSizeDrawn()) {
+						chartData.setHasNewModelLoaded(false);
+					}
 				}
 			}
 		}
