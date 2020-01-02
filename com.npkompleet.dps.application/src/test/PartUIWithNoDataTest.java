@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(SWTBotJunit4ClassRunner.class)
-public class PartUITest {
+public class PartUIWithNoDataTest {
 
 	private static SWTBot bot;
 
@@ -49,6 +49,8 @@ public class PartUITest {
 	public void testActivationPattern() {
 		bot.cTabItem("Activation Pattern").activate();
 		Assert.assertEquals(1, bot.widgets(WidgetMatcherFactory.widgetOfType(Chart.class)).size());
+		Chart chart = bot.widget(WidgetMatcherFactory.widgetOfType(Chart.class));
+		Assert.assertEquals(0, chart.getSeriesSet().getSeries().length);
 	}
 
 	@AfterClass

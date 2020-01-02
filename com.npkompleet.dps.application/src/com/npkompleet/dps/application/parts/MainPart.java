@@ -10,8 +10,10 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
@@ -33,6 +35,12 @@ public class MainPart {
 		text = new Text(parent, SWT.BORDER);
 		text.setMessage("Choose file...");
 		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		text.addListener(SWT.Modify, new Listener() {
+			@Override
+			public void handleEvent(Event event) {
+				ChartDataSingleton.getInstance().setFilePath(text.getText());
+			}
+		});
 
 		Button button = new Button(parent, SWT.PUSH);
 		button.setText("File");
@@ -48,7 +56,6 @@ public class MainPart {
 				String filePath = dialog.getFilterPath().concat("\\").concat(dialog.getFileName());
 				text.setText(filePath);
 
-				ChartDataSingleton.getInstance().setFilePath(filePath);
 			}
 		});
 
