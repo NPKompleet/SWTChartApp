@@ -9,5 +9,5 @@ In order to run the code, the following steps should be followed:
 2. Follow [this tutorial](https://www.vogella.com/tutorials/EclipseRCP/article.html#installation) by Lars Vogel to install the necessary tools.
 3. In App4MC install _SWTCharts_ by opening the **Add Repository** dialog with Help > Install New Software... > Add... then use *https://download.eclipse.org/swtchart/0.7.0/update* as the update site.
 4. Download the repo and open it in a new workspace and run
-5. In App4MC install Mockito for Unit testing by opening the **Add Repository** dialog with Help > Install New Software... > Add... then use *https://download.eclipse.org/tools/orbit/downloads/drops/R20191126223242/repository* and type "Mockito" then choose these dependencies as the update site. Install SWTBot for testing via the Eclipse Update manager. The update site for the SWTBot is: http://download.eclipse.org/technology/swtbot/releases/latest/. Just install the SWTBot Eclipse Features and the SWTBot SWT Features.
+5. The update site for the SWTBot is: http://download.eclipse.org/technology/swtbot/releases/latest/. Just install the SWTBot Eclipse Features and the SWTBot SWT Features.
 6.  In App4MC install EclEmma for test coverage by opening the **Add Repository** dialog with Help > Install New Software... > Add... then use *http://update.eclemma.org/* as the update site.
