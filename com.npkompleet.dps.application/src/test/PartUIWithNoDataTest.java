@@ -26,6 +26,7 @@ public class PartUIWithNoDataTest {
 		bot.cTabItem("Main Page");
 		bot.cTabItem("Label Size");
 		bot.cTabItem("Activation Pattern");
+		bot.cTabItem("Main Page").activate();
 		Assert.assertTrue(bot.cTabItem("Main Page").isActive());
 	}
 

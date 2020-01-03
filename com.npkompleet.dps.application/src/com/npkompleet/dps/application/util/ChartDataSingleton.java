@@ -7,16 +7,43 @@ public class ChartDataSingleton {
 	private static ChartDataSingleton instance;
 
 	private String filePath;
+	private boolean hasActivationPatternDrawn = false;
+	private boolean hasNewModelLoaded = false;
+	private boolean hasLabelSizeDrawn = false;
 
 	private ChartDataSingleton() {
 
 	}
-
+	
 	public static synchronized ChartDataSingleton getInstance() {
 		if (instance == null) {
 			instance = new ChartDataSingleton();
 		}
 		return instance;
+	}
+
+	public boolean isHasNewModelLoaded() {
+		return hasNewModelLoaded;
+	}
+
+	public void setHasNewModelLoaded(boolean hasNewModelLoaded) {
+		this.hasNewModelLoaded = hasNewModelLoaded;
+	}
+	
+	public boolean isHasLabelSizeDrawn() {
+		return hasLabelSizeDrawn;
+	}
+
+	public void setHasLabelSizeDrawn(boolean hasLabelSizeDrawn) {
+		this.hasLabelSizeDrawn = hasLabelSizeDrawn;
+	}
+
+	public boolean isHasActivationPatternDrawn() {
+		return hasActivationPatternDrawn;
+	}
+
+	public void setHasActivationPatternDrawn(boolean hasActivationPatternDrawn) {
+		this.hasActivationPatternDrawn = hasActivationPatternDrawn;
 	}
 
 	public String getFilePath() {
