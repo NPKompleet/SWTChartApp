@@ -26,6 +26,12 @@ public class LoadData {
 
 	}
 
+	/**
+	 * Computes the label sizes of tasks in an App4MC model
+	 * 
+	 * @param path the file path of the App4MC model
+	 * @return a {@link LinkedHashMap} of tasks and their computed label sizes
+	 */
 	public static Map<String, BigInteger> generateLabelSizeData(String path) {
 		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
 
@@ -51,6 +57,12 @@ public class LoadData {
 		return taskListMap;
 	}
 
+	/**
+	 * Gets a collection of tasks with periodic stimulus
+	 * 
+	 * @param path the file path of the App4MC model
+	 * @return a {@link LinkedHashMap} of each task and its period
+	 */
 	public static Map<String, BigInteger> generateActivationTimeData(String path) {
 		Map<String, BigInteger> taskListMap = new LinkedHashMap<>();
 

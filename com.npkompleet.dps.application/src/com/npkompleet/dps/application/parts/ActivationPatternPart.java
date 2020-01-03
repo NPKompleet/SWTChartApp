@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -15,6 +16,8 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseWheelListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -34,11 +37,12 @@ public class ActivationPatternPart {
 	Chart chart;
 	ChartDataSingleton chartData = ChartDataSingleton.getInstance();
 	long periodLCM;
-	Color[] colorList = new Color[] { new Color(Display.getDefault(), 255, 0, 0), // Red
+	final Color[] colorList = new Color[] { new Color(Display.getDefault(), 255, 0, 0), // Red
 			new Color(Display.getDefault(), 255, 255, 0), // Yellow
 			new Color(Display.getDefault(), 0, 0, 255), // Blue
 			new Color(Display.getDefault(), 0, 255, 0) // Green
 	};
+	MouseWheelListener mWListener;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
@@ -92,6 +96,8 @@ public class ActivationPatternPart {
 		});
 	}
 
+	// Draw a line chart with the different activation patterns based on the period
+	// of each task
 	private void createChart() {
 		LinkedHashMap<String, BigInteger> dataMap = (LinkedHashMap<String, BigInteger>) chartData
 				.getActivationPatternData();
@@ -102,31 +108,55 @@ public class ActivationPatternPart {
 		int[] holder = dataMap.values().stream().mapToInt(BigInteger::intValue).toArray();
 		periodLCM = ChartDataSingleton.lcm_of_periods(holder);
 		int index = 0;
-		for (String task : dataMap.keySet()) {
-			ILineSeries lineSeries = (ILineSeries) chart.getSeriesSet().createSeries(SeriesType.LINE, task);
-			int taskPeriod = dataMap.get(task).intValue();
-			List<Double> xValues = new ArrayList<>();
-			List<Double> yValues = new ArrayList<>();
-			double x = 0;
-			double y = 0;
-			for (int i = 0; i < periodLCM / taskPeriod; i++) {
-				xValues.add(x);
+		if (!chart.isDisposed()) {
+			for (String task : dataMap.keySet()) {
+				ILineSeries lineSeries = (ILineSeries) chart.getSeriesSet().createSeries(SeriesType.LINE, task);
+				int taskPeriod = dataMap.get(task).intValue();
+				List<Double> xValues = new ArrayList<>();
+				List<Double> yValues = new ArrayList<>();
+				double x = 0;
+				double y = 0;
+				for (int i = 0; i < periodLCM / taskPeriod; i++) {
+					xValues.add(x);
+					yValues.add(y);
+					xValues.add(x);
+					yValues.add(++y);
+					x += taskPeriod;
+				}
+				xValues.add(Double.valueOf(periodLCM));
 				yValues.add(y);
-				xValues.add(x);
-				y++;
-				yValues.add(y);
-				x += taskPeriod;
+
+				lineSeries.setXSeries(xValues.stream().mapToDouble(Double::doubleValue).toArray());
+				lineSeries.setYSeries(yValues.stream().mapToDouble(Double::doubleValue).toArray());
+				lineSeries.setLineColor(colorList[index % colorList.length]);
+				index++;
+
 			}
-			xValues.add(Double.valueOf(periodLCM));
-			yValues.add(y);
-
-			lineSeries.setXSeries(xValues.stream().mapToDouble(Double::doubleValue).toArray());
-			lineSeries.setYSeries(yValues.stream().mapToDouble(Double::doubleValue).toArray());
-			lineSeries.setLineColor(colorList[index % colorList.length]);
-			index++;
-
+			chart.getAxisSet().adjustRange();
+			mWListener = new MouseWheelListener() {
+				@Override
+				public void mouseScrolled(MouseEvent arg0) {
+					if (arg0.count > 0) {
+						chart.getAxisSet().getXAxis(0).zoomIn(0.5);
+						chart.getAxisSet().getYAxis(0).zoomIn(0.5);
+					} else {
+						chart.getAxisSet().getXAxis(0).zoomOut(0.5);
+						chart.getAxisSet().getYAxis(0).zoomOut(0.5);
+					}
+					chart.redraw();
+				}
+			};
+			chart.addMouseWheelListener(mWListener);
+			chart.redraw();
 		}
-		chart.getAxisSet().adjustRange();
+
+	}
+
+	@PreDestroy
+	public void PreDestroy() {
+		if (mWListener != null && !chart.isDisposed()) {
+			chart.removeMouseWheelListener(mWListener);
+		}
 	}
 
 }

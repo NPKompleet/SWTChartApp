@@ -23,8 +23,8 @@ import org.eclipse.swtchart.Chart;
 import org.eclipse.swtchart.IAxis;
 import org.eclipse.swtchart.IBarSeries;
 import org.eclipse.swtchart.ISeries;
-import org.eclipse.swtchart.ISeriesSet;
 import org.eclipse.swtchart.ISeries.SeriesType;
+import org.eclipse.swtchart.ISeriesSet;
 
 import com.npkompleet.dps.application.util.ChartDataSingleton;
 import com.npkompleet.dps.application.util.Constants;
@@ -86,6 +86,7 @@ public class LabelSizePart {
 		});
 	}
 
+	// Draw a bar chart of the different task label sizes
 	private void createChart() {
 		LinkedHashMap<String, BigInteger> dataMap = (LinkedHashMap<String, BigInteger>) chartData.getLabelSizeData();
 		if (dataMap == null) {
@@ -93,20 +94,22 @@ public class LabelSizePart {
 			return;
 		}
 		System.out.println(dataMap.size());
+		if (!chart.isDisposed()) {
+			IBarSeries barSeries = (IBarSeries) chart.getSeriesSet().createSeries(SeriesType.BAR, "bar series");
+			String[] xValues = new String[dataMap.size()];
+			dataMap.keySet().toArray(xValues);
+			double[] yValues = dataMap.values().stream().map(x -> x.doubleValue()).mapToDouble(Double::doubleValue)
+					.toArray();
+			barSeries.setYSeries(yValues);
+			Color color = new Color(Display.getDefault(), 0, 0, 180);
+			barSeries.setBarColor(color);
+			IAxis xAxis = chart.getAxisSet().getXAxis(0);
+			xAxis.setCategorySeries(xValues);
+			xAxis.enableCategory(true);
 
-		IBarSeries barSeries = (IBarSeries) chart.getSeriesSet().createSeries(SeriesType.BAR, "bar series");
-		String[] xValues = new String[dataMap.size()];
-		dataMap.keySet().toArray(xValues);
-		double[] yValues = dataMap.values().stream().map(x -> x.doubleValue()).mapToDouble(Double::doubleValue)
-				.toArray();
-		barSeries.setYSeries(yValues);
-		Color color = new Color(Display.getDefault(), 0, 0, 180);
-		barSeries.setBarColor(color);
-		IAxis xAxis = chart.getAxisSet().getXAxis(0);
-		xAxis.setCategorySeries(xValues);
-		xAxis.enableCategory(true);
-
-		chart.getAxisSet().adjustRange();
+			chart.getAxisSet().adjustRange();
+			chart.redraw();
+		}
 	}
 
 }
