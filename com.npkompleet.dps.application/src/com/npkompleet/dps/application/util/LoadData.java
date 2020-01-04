@@ -20,6 +20,10 @@ import org.eclipse.app4mc.amalthea.model.Time;
 import org.eclipse.app4mc.amalthea.model.io.AmaltheaLoader;
 import org.eclipse.app4mc.amalthea.model.util.SoftwareUtil;
 
+/**
+ * This class is used to read from App4MC model files and generate the data
+ * points that will be used to plot the bar and line charts
+ */
 public class LoadData {
 
 	public LoadData() {

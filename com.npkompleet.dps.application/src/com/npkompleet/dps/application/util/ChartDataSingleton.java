@@ -1,8 +1,13 @@
 package com.npkompleet.dps.application.util;
 
 import java.math.BigInteger;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * This singleton is used by the application to load data for each page and
+ * generate data points for plotting charts
+ */
 public class ChartDataSingleton {
 	private static ChartDataSingleton instance;
 
@@ -14,7 +19,7 @@ public class ChartDataSingleton {
 	private ChartDataSingleton() {
 
 	}
-	
+
 	public static synchronized ChartDataSingleton getInstance() {
 		if (instance == null) {
 			instance = new ChartDataSingleton();
@@ -29,7 +34,7 @@ public class ChartDataSingleton {
 	public void setHasNewModelLoaded(boolean hasNewModelLoaded) {
 		this.hasNewModelLoaded = hasNewModelLoaded;
 	}
-	
+
 	public boolean isHasLabelSizeDrawn() {
 		return hasLabelSizeDrawn;
 	}
@@ -54,12 +59,20 @@ public class ChartDataSingleton {
 		this.filePath = filePath;
 	}
 
+	/**
+	 * @return a {@link LinkedHashMap} of tasks and their computed label sizes
+	 * @see LoadData#generateLabelSizeData(String)
+	 */
 	public Map<String, BigInteger> getLabelSizeData() {
 		if (filePath == null || filePath.equals(""))
 			return null;
 		return LoadData.generateLabelSizeData(filePath);
 	}
 
+	/**
+	 * @return a {@link LinkedHashMap} of each task and its period
+	 * @see LoadData#generateActivationTimeData(String)
+	 */
 	public Map<String, BigInteger> getActivationPatternData() {
 		if (filePath == null || filePath.equals(""))
 			return null;

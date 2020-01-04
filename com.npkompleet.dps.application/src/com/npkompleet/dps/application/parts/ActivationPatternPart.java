@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -42,7 +41,6 @@ public class ActivationPatternPart {
 			new Color(Display.getDefault(), 0, 0, 255), // Blue
 			new Color(Display.getDefault(), 0, 255, 0) // Green
 	};
-	MouseWheelListener mWListener;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
@@ -130,10 +128,11 @@ public class ActivationPatternPart {
 				lineSeries.setYSeries(yValues.stream().mapToDouble(Double::doubleValue).toArray());
 				lineSeries.setLineColor(colorList[index % colorList.length]);
 				index++;
-
 			}
 			chart.getAxisSet().adjustRange();
-			mWListener = new MouseWheelListener() {
+
+			// Add zoom functionality with mouse scroll wheel
+			chart.addMouseWheelListener(new MouseWheelListener() {
 				@Override
 				public void mouseScrolled(MouseEvent arg0) {
 					if (arg0.count > 0) {
@@ -145,18 +144,10 @@ public class ActivationPatternPart {
 					}
 					chart.redraw();
 				}
-			};
-			chart.addMouseWheelListener(mWListener);
+			});
 			chart.redraw();
 		}
 
-	}
-
-	@PreDestroy
-	public void PreDestroy() {
-		if (mWListener != null && !chart.isDisposed()) {
-			chart.removeMouseWheelListener(mWListener);
-		}
 	}
 
 }
