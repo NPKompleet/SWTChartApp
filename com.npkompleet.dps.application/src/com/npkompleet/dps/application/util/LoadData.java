@@ -17,6 +17,7 @@ import org.eclipse.app4mc.amalthea.model.PeriodicStimulus;
 import org.eclipse.app4mc.amalthea.model.Stimulus;
 import org.eclipse.app4mc.amalthea.model.Task;
 import org.eclipse.app4mc.amalthea.model.Time;
+import org.eclipse.app4mc.amalthea.model.TimeUnit;
 import org.eclipse.app4mc.amalthea.model.io.AmaltheaLoader;
 import org.eclipse.app4mc.amalthea.model.util.SoftwareUtil;
 
@@ -84,6 +85,7 @@ public class LoadData {
 			Stimulus stimuli = task.getStimuli().get(0);
 			if (stimuli instanceof PeriodicStimulus) {
 				Time period = ((PeriodicStimulus) stimuli).getRecurrence();
+				period = alignPeriodToMS(period);
 				System.out.println("Period " + period);
 				taskListMap.put(task.getName(), period.getValue());
 			}
@@ -91,4 +93,27 @@ public class LoadData {
 		return taskListMap;
 	}
 
+	public static Time alignPeriodToMS(Time period) {
+		switch (period.getUnit().getName()) {
+		case "s":
+			period.setValue(period.getValue().multiply(BigInteger.valueOf(1000)));
+			period.setUnit(TimeUnit.MS);
+			break;
+		case "us":
+			period.setValue(period.getValue().divide(BigInteger.valueOf(1000)));
+			period.setUnit(TimeUnit.MS);
+			break;
+		case "ns":
+			period.setValue(period.getValue().divide(BigInteger.valueOf(1000000)));
+			period.setUnit(TimeUnit.MS);
+			break;
+		case "ps":
+			period.setValue(period.getValue().divide(BigInteger.valueOf(1000000000)));
+			period.setUnit(TimeUnit.MS);
+			break;
+		default:
+			break;
+		}
+		return period;
+	}
 }
